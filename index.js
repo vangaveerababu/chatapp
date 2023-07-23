@@ -51,6 +51,11 @@ const connection = mysql.createConnection({
  
 connection.connect(function (error) {
     // show error, if any
+    
+     if (error) {
+     
+       console.error('error: ' + error.message);
+    }
 });
 
 app.get("/", (req, res) => {
@@ -95,7 +100,7 @@ app.get("/", (req, res) => {
   });
 
 app.post("/users", function (request, result) {
-    var id=request.body.id;
+    
     connection.query("SELECT * FROM user_registration", function (error, messages) {
         // return data will be in JSON format
        // result.end(JSON.stringify(messages));
